@@ -5,15 +5,19 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DatabaseConfigService } from './database.config';
+import { DatabaseTestConfigService } from './database-test.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env',
+      envFilePath: `.env`,
     }),
     TypeOrmModule.forRootAsync({
-      useClass: DatabaseConfigService,
+      useClass:
+        process.env.NODE_ENV === 'test'
+          ? DatabaseTestConfigService
+          : DatabaseConfigService,
       inject: [ConfigService],
     }),
     UserModule,
