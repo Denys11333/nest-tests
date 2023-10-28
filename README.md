@@ -1,6 +1,6 @@
 # An example for writing tests in NestJs
 - unit tests
-```
+``` typescript
 describe('create', () => {
     it('should create user', async () => {
       const newUser = {
