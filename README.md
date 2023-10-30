@@ -19,7 +19,7 @@ describe('create', () => {
     });
   });
 ```
-- integration tests (for example create user test)
+- e2e tests (for example create user test)
 ``` typescript
  it('should create user (POST /user)', async () => {
     const response = await request(app.getHttpServer())
